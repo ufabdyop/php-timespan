@@ -4,6 +4,63 @@
  require_once('../code/time_span.php');
  require_once('../code/date_overlap_calculator.php');
 
+ class TimeSpanFlattenTestCases extends TestCase
+ {
+   public function SetUp()
+   {
+   }
+   public function Run()
+   {
+	$this->TestLongSpanDisruptedByShortSpan();	
+	$this->TestLongSpanDisruptedBy2ShortSpans();	
+	$this->TestGroupFlatten();
+   }
+   public function TestGroupFlatten() {
+	$time_calc = new date_overlap_calculator('2012-08-13 12:00:00', '2012-08-13 20:00:00' );
+	$visualize_this_as = "
+Each hyphen is 6 minutes
+Timeslots:      12am       1am       2am        3am        4am        5am        6am        7am
+                  |         |         |          |          |          |          |          | 
+                  ------------------------------------------------------------------------------
+time_group_one:   ----------          ----------------------           -----------
+time_group_two:       ---------     ------     -----------     -----       
+results:          ----                    -----           --           -----------         
+
+In essence, results are equal to time_group_one minus time_group_two
+";
+	$this->Fail('No function exists yet for a group flatten in the date_overlap_calculator class');
+   }
+   public function TestLongSpanDisruptedByShortSpan() {
+	$time_calc = new date_overlap_calculator('2012-08-13 12:00:00', '2012-08-13 20:00:00' );
+	$splitter = new time_span('2012-08-13 15:00:00', '2012-08-13 16:00:00' );
+	
+	$expected_result1 = new time_span('2012-08-13 12:00:00', '2012-08-13 15:00:00' );
+	$expected_result2 = new time_span('2012-08-13 16:00:00', '2012-08-13 20:00:00' );
+	$results = $time_calc->find_uncovered_spans(array($splitter));
+	$this->AssertEquals(count($results), 2, "Should be split in 2");
+	$this->AssertEquals($expected_result1->to_string(), $results[0]->to_string());
+	$this->AssertEquals($expected_result2->to_string(), $results[1]->to_string());
+   }
+   public function TestLongSpanDisruptedBy2ShortSpans() {
+	$time_calc = new date_overlap_calculator('2012-08-13 12:00:00', '2012-08-13 20:00:00' );
+	$splitters =array( new time_span('2012-08-13 15:00:00', '2012-08-13 16:00:00' ),
+				new time_span('2012-08-13 16:30:00', '2012-08-13 17:00:00' ) );
+	
+	$expected_result1 = new time_span('2012-08-13 12:00:00', '2012-08-13 15:00:00' );
+	$expected_result2 = new time_span('2012-08-13 16:00:00', '2012-08-13 16:30:00' );
+	$expected_result3 = new time_span('2012-08-13 17:00:00', '2012-08-13 20:00:00' );
+	$results = $time_calc->find_uncovered_spans($splitters);
+
+	$this->AssertEquals(count($results), 3, "Should be split in 2");
+	$this->AssertEquals($expected_result1->to_string(), $results[0]->to_string());
+	$this->AssertEquals($expected_result2->to_string(), $results[1]->to_string());
+	$this->AssertEquals($expected_result3->to_string(), $results[2]->to_string());
+   }
+   public function TearDown()
+   {
+   }
+ } 
+
  class TimeSpanMergeTestCases extends TestCase
  {
    public function SetUp()
@@ -16,6 +73,7 @@
 	$this->TestMergeOfOneSlotThatIsCompletelyCoveredByAnotherSlot();
 	$this->TestMergeOfOneSlotThatStartsExactlyWhenSecondOneEnds();
 	$this->TestTimeSpanWithEarlyEdateHasException();
+	$this->TestStaggeredTimeSlotsMergeToOne() ;
    }
 
    public function TestDisparateSlotsDoNotMerge() {
@@ -41,6 +99,17 @@
 	list( $result_one ) = $time_calc->merge_slots(array($time_one, $time_two));
 	$this->AssertEquals($time_one->as_string(), $result_one->as_string(), 'Time one should be equal to result one');
    }
+   public function TestStaggeredTimeSlotsMergeToOne() {
+	$time_calc = new date_overlap_calculator();
+	for ($i = 0; $i < 10; $i++) {
+		$begin = date('Y-m-d H:i:s', time() + $i * 60 );
+		$end = date('Y-m-d H:i:s', time() + ($i + 1) * 60 );
+		$spans[] = new time_span($begin, $end);
+	}
+	$results = $time_calc->merge_slots($spans);
+	$this->AssertEquals(count($results), 1, "Everything should merge to 1");
+	
+   }
    public function TestMergeOfOneSlotThatStartsExactlyWhenSecondOneEnds() {
 	$time_one = new time_span('2012-08-01 12:00:00', '2012-08-01 12:30:00');  
 	$time_two = new time_span('2012-08-01 12:30:00', '2012-08-01 13:00:00'); 
@@ -58,7 +127,7 @@
 
 $suite = new TestSuite;
 $suite->AddTest('TimeSpanMergeTestCases');
-
+$suite->AddTest('TimeSpanFlattenTestCases');
 $runner = new XHTMLTestRunner;
 
 $runner->Run($suite, 'test_results');
