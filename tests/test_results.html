@@ -1,0 +1,525 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+                  "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=US-ASCII"/>
+    <title>Test Case Report</title>
+    <style type="text/css">
+/* http://meyerweb.com/eric/tools/css/reset/ */
+/* v1.0 | 20080212 */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body {
+  line-height: 1;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* END OF THE RESET BIT */
+
+/* Stylesheet for the page */
+html
+{
+  background-color: #ECFAFF;
+}
+
+body
+{
+  margin: 10px auto 10px auto;
+  width: 980px;
+}
+
+h1
+{
+  margin-bottom: 5px;
+  background-color: #BAEEA8;
+  color: #BA21E0;
+  font: bold 24px "Comic Sans MS", cursive;
+  text-align: center;
+}
+
+h2
+{
+  font: 18px Impact, Charcoal, sans-serif;
+  color: Black;
+  margin-bottom: 12px;
+  margin-top: 12px;
+}
+
+h3
+{
+  font: 14px "Arial Black", Gadget, sans-serif;
+  color: #BA21E0;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+a
+{
+  text-decoration: none;
+  color: inherit;
+}
+
+tr
+{
+  color: Black;
+  border: solid 1px black
+}
+
+td, th
+{
+  border: solid 1px black;
+  padding: 2px 2px 2px 2px;
+  font: 12px Arial, Helvetica, sans-serif;
+}
+
+th
+{
+  font-weight: bold;
+  border-bottom-width: 2px;
+  background-color: #A8E4FF;
+  color: Black;
+  border: solid 1px black
+}
+
+p
+{
+  font: 12px Arial, Helvetica, sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+ul
+{
+  margin-left: 15px;
+  margin-top: 12px;
+  font: 12px Arial, Helvetica, sans-serif;
+  list-style: none;
+}
+
+strong
+{
+  font-weight: bold;
+}
+
+.pass
+{
+  background-color: #008000;
+  color: White;
+}
+
+.passHeading
+{
+  background-color: #008000;
+  color: White;
+  padding-left: 6px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.fail
+{
+  background-color: #900000;
+  color: White;
+}
+
+.failHeading
+{
+  background-color: #900000;
+  color: White;
+  padding-left: 6px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.footnote
+{
+  vertical-align: super;
+  color: Black;
+}
+
+.centre
+{
+  text-align: center;
+}
+
+.detailsTable
+{
+  width: 980px;
+}
+
+.dateAndTimeColumn
+{
+  width: 180px;
+}
+
+.eventColumn
+{
+  width: 70px;
+  text-align: center;
+}
+
+.reasonColumn
+{
+  width: 170px;
+}
+
+.messageColumn
+{
+  width: 170px;
+}
+
+.blankMessageColumn
+{
+  width: 170px;
+  text-align: center;
+}
+
+.detailsHeadingColumn
+{
+  width: 105px;
+  color: Yellow;
+}
+
+.testCaseIDColumn
+{
+  width: 120px;
+}
+
+.nameColumn
+{
+  width: 200px;
+}
+
+.descriptionColumn
+{
+  width: 400px;
+}
+
+.hasPassedColumn
+{
+  width: 60px;
+
+}
+.testCaseIDColumn
+{
+  width: 120px;
+}
+
+.nameColumn
+{
+  width: 200px;
+}
+
+.descriptionColumn
+{
+  width: 400px;
+}
+
+.hasPassedColumn
+{
+  width: 60px;
+  text-align: center;
+}    </style>
+  </head>
+  <body>
+    <h1>Test Case Report</h1>
+    <h2>Summary</h2>
+    <table cellspacing="0" title="Summary of tests" summary="A list of tests carried out and if they passed or failed">
+      <thead>
+        <tr>
+          <th class="testCaseIDColumn">Test case ID</th>
+          <th class="nameColumn">Name</th>
+          <th class="descriptionColumn">Description</th>
+          <th class="hasPassedColumn">Passed?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="pass">
+          <td class="testCaseIDColumn">
+            <a href="#id1171444072700">TEST1</a>
+          </td>
+          <td class="nameColumn">TimeSpanMergeTestCases</td>
+          <td class="descriptionColumn">No description.</td>
+          <td class="hasPassedColumn">Yes</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>Details</h2>
+    <h3 class="passHeading">
+      <a id="id1171444072700">TEST1 - TimeSpanMergeTestCases</a>
+    </h3>
+    <p>No description.</p>
+    <table cellspacing="0" class="detailsTable" title="Test events" summary="A list of events that occurred during the test">
+      <thead>
+        <tr>
+          <th class="dateAndTimeColumn">Date &amp; Time</th>
+          <th class="eventColumn">Event<a href="#eventsKey" class="footnote">1</a></th>
+          <th class="reasonColumn">Reason</th>
+          <th class="messageColumn">Message</th>
+          <th class="detailsColumn" colspan="2">Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="dateAndTimeColumn">29 Aug 12, 23:05:21.412 +0000</td>
+          <td class="eventColumn">TS</td>
+          <td class="reasonColumn">'SetUp' started</td>
+          <td class="blankMessageColumn">-</td>
+          <td colspan="2" class="centre">-</td>
+        </tr>
+        <tr>
+          <td class="dateAndTimeColumn">29 Aug 12, 23:05:21.412 +0000</td>
+          <td class="eventColumn">SYS MSG</td>
+          <td class="reasonColumn">Setup completed.</td>
+          <td class="blankMessageColumn">-</td>
+          <td colspan="2" class="centre">-</td>
+        </tr>
+        <tr>
+          <td class="dateAndTimeColumn">29 Aug 12, 23:05:21.412 +0000</td>
+          <td class="eventColumn">TS</td>
+          <td class="reasonColumn">'SetUp' finished</td>
+          <td class="blankMessageColumn">-</td>
+          <td colspan="2" class="centre">-</td>
+        </tr>
+        <tr>
+          <td class="dateAndTimeColumn">29 Aug 12, 23:05:21.412 +0000</td>
+          <td class="eventColumn">TS</td>
+          <td class="reasonColumn">'Run' started</td>
+          <td class="blankMessageColumn">-</td>
+          <td colspan="2" class="centre">-</td>
+        </tr>
+        <tr class="pass">
+          <td rowspan="6" class="dateAndTimeColumn">29 Aug 12, 23:05:21.413 +0000</td>
+          <td rowspan="6" class="eventColumn">PASS</td>
+          <td rowspan="6" class="reasonColumn">AssertEquals: The values are equal.</td>
+          <td rowspan="6" class="messageColumn">Time one should be equal to result one</td>
+          <td class="detailsHeadingColumn">File:</td>
+          <td>/data/www/html/php-timespan/tests/TestSuite.php</td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Line:</td>
+          <td>26</td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Actual Type:</td>
+          <td>
+            <pre>string</pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Actual:</td>
+          <td>
+            <pre>( 2011-08-01 12:00:00, 2011-08-01 13:00:00) </pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Comparison Type:</td>
+          <td>
+            <pre>string</pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Comparison:</td>
+          <td>
+            <pre>( 2011-08-01 12:00:00, 2011-08-01 13:00:00) </pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td rowspan="6" class="dateAndTimeColumn">29 Aug 12, 23:05:21.413 +0000</td>
+          <td rowspan="6" class="eventColumn">PASS</td>
+          <td rowspan="6" class="reasonColumn">AssertEquals: The values are equal.</td>
+          <td rowspan="6" class="messageColumn">Time two should be equal to result two</td>
+          <td class="detailsHeadingColumn">File:</td>
+          <td>/data/www/html/php-timespan/tests/TestSuite.php</td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Line:</td>
+          <td>27</td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Actual Type:</td>
+          <td>
+            <pre>string</pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Actual:</td>
+          <td>
+            <pre>( 2012-08-01 12:00:00, 2012-08-01 13:00:00) </pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Comparison Type:</td>
+          <td>
+            <pre>string</pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Comparison:</td>
+          <td>
+            <pre>( 2012-08-01 12:00:00, 2012-08-01 13:00:00) </pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td rowspan="6" class="dateAndTimeColumn">29 Aug 12, 23:05:21.413 +0000</td>
+          <td rowspan="6" class="eventColumn">PASS</td>
+          <td rowspan="6" class="reasonColumn">AssertEquals: The values are equal.</td>
+          <td rowspan="6" class="messageColumn">Time one should be equal to result one</td>
+          <td class="detailsHeadingColumn">File:</td>
+          <td>/data/www/html/php-timespan/tests/TestSuite.php</td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Line:</td>
+          <td>42</td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Actual Type:</td>
+          <td>
+            <pre>string</pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Actual:</td>
+          <td>
+            <pre>( 2012-08-01 12:00:00, 2012-08-01 13:00:00) </pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Comparison Type:</td>
+          <td>
+            <pre>string</pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Comparison:</td>
+          <td>
+            <pre>( 2012-08-01 12:00:00, 2012-08-01 13:00:00) </pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td rowspan="6" class="dateAndTimeColumn">29 Aug 12, 23:05:21.414 +0000</td>
+          <td rowspan="6" class="eventColumn">PASS</td>
+          <td rowspan="6" class="reasonColumn">AssertEquals: The values are equal.</td>
+          <td rowspan="6" class="messageColumn">2 touching slots of one half hour should merge to 1 single hour long slot</td>
+          <td class="detailsHeadingColumn">File:</td>
+          <td>/data/www/html/php-timespan/tests/TestSuite.php</td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Line:</td>
+          <td>51</td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Actual Type:</td>
+          <td>
+            <pre>string</pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Actual:</td>
+          <td>
+            <pre>( 2012-08-01 12:00:00, 2012-08-01 13:00:00) </pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Comparison Type:</td>
+          <td>
+            <pre>string</pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Comparison:</td>
+          <td>
+            <pre>( 2012-08-01 12:00:00, 2012-08-01 13:00:00) </pre>
+          </td>
+        </tr>
+        <tr class="pass">
+          <td rowspan="2" class="dateAndTimeColumn">29 Aug 12, 23:05:21.414 +0000</td>
+          <td rowspan="2" class="eventColumn">PASS_MSG</td>
+          <td rowspan="2" class="reasonColumn">Users pass message</td>
+          <td rowspan="2" class="messageColumn">Good, we got an expected exception for incorrect time_span</td>
+          <td class="detailsHeadingColumn">File:</td>
+          <td>/data/www/html/php-timespan/tests/TestSuite.php</td>
+        </tr>
+        <tr class="pass">
+          <td class="detailsHeadingColumn">Line:</td>
+          <td>34</td>
+        </tr>
+        <tr>
+          <td class="dateAndTimeColumn">29 Aug 12, 23:05:21.414 +0000</td>
+          <td class="eventColumn">SYS MSG</td>
+          <td class="reasonColumn">Test case completed.</td>
+          <td class="blankMessageColumn">-</td>
+          <td colspan="2" class="centre">-</td>
+        </tr>
+        <tr>
+          <td class="dateAndTimeColumn">29 Aug 12, 23:05:21.414 +0000</td>
+          <td class="eventColumn">TS</td>
+          <td class="reasonColumn">'Run' finished</td>
+          <td class="blankMessageColumn">-</td>
+          <td colspan="2" class="centre">-</td>
+        </tr>
+        <tr>
+          <td class="dateAndTimeColumn">29 Aug 12, 23:05:21.414 +0000</td>
+          <td class="eventColumn">TS</td>
+          <td class="reasonColumn">'TearDown' started</td>
+          <td class="blankMessageColumn">-</td>
+          <td colspan="2" class="centre">-</td>
+        </tr>
+        <tr>
+          <td class="dateAndTimeColumn">29 Aug 12, 23:05:21.415 +0000</td>
+          <td class="eventColumn">SYS MSG</td>
+          <td class="reasonColumn">TearDown completed.</td>
+          <td class="blankMessageColumn">-</td>
+          <td colspan="2" class="centre">-</td>
+        </tr>
+        <tr>
+          <td class="dateAndTimeColumn">29 Aug 12, 23:05:21.415 +0000</td>
+          <td class="eventColumn">TS</td>
+          <td class="reasonColumn">'TearDown' finished</td>
+          <td class="blankMessageColumn">-</td>
+          <td colspan="2" class="centre">-</td>
+        </tr>
+      </tbody>
+    </table>
+    <h2>
+      <a id="eventsKey">Events key</a>
+    </h2>
+    <p>A list of events that can occur in a test along with their meaning:</p>
+    <ul>
+      <li><strong>PASS</strong> - An assertion has passed successfully</li>
+      <li><strong>PASS_MSG</strong> - A users pass message</li>
+      <li><strong>FAIL</strong> - An assertion has failed</li>
+      <li><strong>FAIL_MSG</strong> - A users fail message</li>
+      <li><strong>ERROR</strong> - An assertion could not be carried out - need to fix the code!</li>
+      <li><strong>USER MSG</strong> - A user message, for comentary</li>
+      <li><strong>SYS MSG</strong> - A test system message</li>
+      <li><strong>EXCEPTION</strong> - An exception has thrown and uncaught - need to fix the code!</li>
+      <li><strong>TS</strong> - A time stamp marker</li>
+    </ul>
+  </body>
+</html>
