@@ -138,6 +138,17 @@ class date_overlap_calculator {
 		return $slice_points;
 	}
 
+/**
+Each hyphen is 5 minutes
+12am        1am         2am         3am         4am         5am         6am         7am
+|           |           |           |           |           |           |           | 
+-------------------------------------------------------------------------------------
+                    ----------------------                                          |this->timespan   
+    ---------     ------     -----------     -----                                  |slot_ary
+                        -----           --                                          |return value
+
+In essence, the return value is an array of time_spans equal to this->timespan minus slot_ary
+*/
 	public function find_uncovered_spans($slot_ary) {
 		$spans = array();
 		$slots = $this->find_uncovered_slots($slot_ary) ;
@@ -150,6 +161,43 @@ class date_overlap_calculator {
                     }
                 }
 		return $spans;
+	}
+/**
+Each hyphen is 5 minutes
+12am        1am         2am         3am         4am         5am         6am         7am
+|           |           |           |           |           |           |           | 
+-------------------------------------------------------------------------------------
+----------          ----------------------           -----------                    |time_group_one   
+    ---------     ------     -----------     -----                                  |time_group_two   
+----                    -----           --           -----------                    |results           
+
+In essence, results are equal to time_group_one minus time_group_two
+*/
+	public function time_span_group_subtract($time_group_one, $time_group_two) {
+		$merged_one = $this->merge_slots($time_group_one);
+		$merged_two = $this->merge_slots($time_group_two);
+		$results = array();
+		foreach($merged_one as $slot ) {
+			$temp_calc = new date_overlap_calculator($slot->bdate(), $slot->edate());
+			$results = array_merge( $temp_calc->find_uncovered_spans($time_group_two), $results);	
+		}
+		return $this->merge_slots($results);
+	}
+
+/**
+* Compares 2 arrays of timespans.  If they are exactly the same, returns true.
+*
+*/
+	public function time_span_group_equal($time_group_one, $time_group_two) {
+		if (count($time_group_one) != count($time_group_two)) {
+			return false;
+		}
+		for ($i = 0; $i < count($time_group_one); $i++) {
+			if (!$time_group_one[$i]->equals($time_group_two[$i])) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public function dump_slices($ary) {

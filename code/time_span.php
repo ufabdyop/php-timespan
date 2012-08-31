@@ -58,5 +58,12 @@ class time_span {
 		}
 		return ($this->bdate > $compareTo->bdate) ? +1 : -1; 
 	}
+
+	/**
+	* returns true if argument is equal to this timespan
+	*/
+	public function equals($compareTo) {
+		return $this->cmp($compareTo) == 0;
+	}
 }
 ?>

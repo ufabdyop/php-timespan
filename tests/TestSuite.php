@@ -13,22 +13,46 @@
    {
 	$this->TestLongSpanDisruptedByShortSpan();	
 	$this->TestLongSpanDisruptedBy2ShortSpans();	
-	$this->TestGroupFlatten();
+	$this->TestTimeGroupSubtract();
    }
-   public function TestGroupFlatten() {
-	$time_calc = new date_overlap_calculator('2012-08-13 12:00:00', '2012-08-13 20:00:00' );
+   public function TestTimeGroupSubtract() {
+	$time_calc = new date_overlap_calculator();
 	$visualize_this_as = "
-Each hyphen is 6 minutes
-Timeslots:      12am       1am       2am        3am        4am        5am        6am        7am
-                  |         |         |          |          |          |          |          | 
-                  ------------------------------------------------------------------------------
-time_group_one:   ----------          ----------------------           -----------
-time_group_two:       ---------     ------     -----------     -----       
-results:          ----                    -----           --           -----------         
+Each hyphen is 5 minutes
+12am        1am         2am         3am         4am         5am         6am         7am
+|           |           |           |           |           |           |           | 
+-------------------------------------------------------------------------------------
+----------          ----------------------           -----------                    |time_group_one   
+    ---------     ------     -----------     -----                                  |time_group_two   
+----                    -----           --           -----------                    |results           
 
 In essence, results are equal to time_group_one minus time_group_two
 ";
-	$this->Fail('No function exists yet for a group flatten in the date_overlap_calculator class');
+	$d = "2012-08-13";
+	$time_group_one = array(
+			new time_span("$d 00:00:00", "$d 00:50:00"),
+			new time_span("$d 01:40:00", "$d 03:30:00"),
+			new time_span("$d 04:25:00", "$d 05:15:00"),
+		);
+	$time_group_two = array(
+			new time_span("$d 00:20:00", "$d 01:05:00"),
+			new time_span("$d 01:30:00", "$d 02:00:00"),
+			new time_span("$d 02:25:00", "$d 03:20:00"),
+			new time_span("$d 03:45:00", "$d 04:10:00"),
+		);
+	$expected_results = array(
+			new time_span("$d 00:00:00", "$d 00:20:00"),
+			new time_span("$d 02:00:00", "$d 02:25:00"),
+			new time_span("$d 03:20:00", "$d 03:30:00"),
+			new time_span("$d 04:25:00", "$d 05:15:00"),
+		);
+	$results = $time_calc->time_span_group_subtract($time_group_one, $time_group_two);
+	$are_the_same = $time_calc->time_span_group_equal($results, $expected_results);
+	$this->AssertEquals($results[0]->to_string(), $expected_results[0]->to_string());
+	$this->AssertEquals($results[1]->to_string(), $expected_results[1]->to_string());
+	$this->AssertEquals($results[2]->to_string(), $expected_results[2]->to_string());
+	$this->AssertEquals(count($results), count($expected_results), "The results of subtracting should be the same size as expected results");
+	$this->AssertEquals(true, $are_the_same, "The results of subtracting these time groups should make sense");
    }
    public function TestLongSpanDisruptedByShortSpan() {
 	$time_calc = new date_overlap_calculator('2012-08-13 12:00:00', '2012-08-13 20:00:00' );
