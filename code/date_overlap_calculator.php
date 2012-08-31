@@ -25,6 +25,9 @@ class date_overlap_calculator {
 	This function merges the given array of time_spans into the smallest number of time_spans with no overlaps
 	*/
 	public function merge_slots($slot_ary) {
+		if (count($slot_ary) == 0) {
+			return array();
+		}
 		$return_array = array();
 
 		//order the timespans by beginning
